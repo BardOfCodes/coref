@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Code-rewriting infused neural inference of Visual Programs">
+  <meta name="keywords" content="VPI, SIRI, Rewriting, PLAD">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Improving Unsupervised Visual Program Inference with Code Rewriting Families</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  
+  <!-- For viewing 3D models -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+  <!-- Import the component -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
+
+
+  <script src="./static/js/video_comparison.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+  
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Improving Unsupervised Visual Program Inference with Code Rewriting Families</h1>
+          <div class="is-size-4 publication-authors mt-3 darkest-font">
+            <span class="author-block">
+              <a href="https://bardofcodes.github.io/">Aditya Ganeshan</a>,</span>
+            <span class="author-block">
+              <a href="https://rkjones4.github.io/">R. Kenny Jones</a>,</span>
+            <span class="author-block">
+              <a href="https://dritchie.github.io/">Daniel Ritchie</a>
+            </span>
+          </div>
+          <div class="is-size-4 publication-authors mt-3">
+            <span class="author-block">Brown University</span>
+          </div>
+          <div class="is-size-4 publication-authors mt-3">
+            <p> ICCV, 2023 (oral) </p>
+          </div>
+
+          <div class="columns has-text-centered is-centered is-vcentered is-mobile mt-3 mb-0">
+            <div class="column is-1 ml-2 mr-2">
+                <a href="https://github.com/bardofcodes/coref/pdf.png">
+                    <img src="./static/images/paper_frontpage.png" >
+                </a>
+            </div>
+            <div class="column is-1 ml-2 mr-2">
+                <a href="https://github.com/bardofcodes/coref/pdf.png">
+                    <img src="./static/images/supp_frontpage.png" >
+                </a>
+            </div>
+            <div class="column is-1 ml-2 mr-2">
+                <a href="https://github.com/bardofcodes/coref/pdf.png">
+                    <img src="./static/images/arxiv-logo.svg" >
+                </a>
+            </div>
+            <div class="column is-1 ml-2 mr-2">
+                <a href="https://github.com/bardofcodes/coref/pdf.png">
+                    <img src="./static/images/github-logo.svg" >
+                </a>
+            </div>
+            <div class="column is-1 ml-2 mr-2">
+                <a href="https://github.com/bardofcodes/coref/pdf.png">
+                    <img src="./static/images/youtube-logo.svg" >
+                </a>
+            </div>
+          </div>
+
+          <div class="columns is-size-5 has-text-centered is-centered is-vcentered is-mobile darkest-font">
+            <div class="column is-1 ml-2 mr-2">
+                <a href="https://github.com/bardofcodes/coref/pdf.png">
+                    <h4> Paper </h4>
+                </a>
+            </div>
+            <div class="column is-1 ml-2 mr-2">
+                <a href="https://github.com/bardofcodes/coref/pdf.png">
+                    <h4> Supp. </h4>
+                </a>
+            </div>
+            <div class="column is-1 ml-2 mr-2">
+                <a href="https://github.com/bardofcodes/coref/pdf.png">
+                    <h4> ArXiv </h4>
+                </a>
+            </div>
+            <div class="column is-1 ml-2 mr-2">
+                <a href="https://github.com/bardofcodes/coref/pdf.png">
+                    <h4> Code </h4>
+                </a>
+            </div>
+            <div class="column is-1 ml-2 mr-2">
+                <a href="https://github.com/bardofcodes/coref/pdf.png">
+                    <h4> Video </h4>
+                </a>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section mt-1 pt-1">
+      <!-- <div class="hero-body"> -->
+        <!-- <div class="columns is-centered">
+                <div class="video-compare-container " id="materialsDiv">
+                    <video class="video" id="materials" loop="" playsinline="" autoplay="" muted="" src="./static/videos/banner_parsimonious.mp4" onplay="resizeAndPlay(this)" style="height: 400px;"></video>
+                    <canvas class="videoMerge" id="materialsMerge" width="800"></canvas>
+                </div>
+        </div> -->
+
+    <div class="container is-max-desktop mt-1 pt-1 pb-4">
+        <!-- <div class="container"> -->
+        <div id="results-carousel" class="carousel results-carousel">
+            <div class="item item-steve">
+            <video poster="" id="steve" autoplay controls muted loop playsinline height="75%">
+                <source src="./static/videos/03001627_chair_174.mp4"
+                        type="video/mp4">
+            </video>
+            </div>
+            <div class="item item-chair-tp">
+            <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/02828884_bench_67.mp4"
+                        type="video/mp4">
+            </video>
+            </div>
+            <div class="item item-shiba">
+            <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/04379243_table_48.mp4"
+                        type="video/mp4">
+            </video>
+            </div>
+            <div class="item item-fullbody">
+            <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/04256520_couch_66.mp4"
+                        type="video/mp4">
+            </video>
+            </div>
+            <div class="item item-blueshirt">
+            <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/03001627_chair_183.mp4"
+                        type="video/mp4">
+            </video>
+            </div>
+            <div class="item item-mask">
+            <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/02828884_bench_26.mp4"
+                        type="video/mp4">
+            </video>
+            </div>
+            <div class="item item-coffee">
+            <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/04379243_table_274.mp4"
+                        type="video/mp4">
+            </video>
+            </div>
+            <div class="item item-toby">
+            <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
+                <source src="./static/videos/04256520_couch_172.mp4"
+                        type="video/mp4">
+            </video>
+            </div>
+        </div>
+    </div>
+
+    <div class="container is-max-desktop">
+        <!-- Abstract. -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column ">
+
+        <h2 class="subtitle has-text-centered is-size-5">
+          Compared to prior <i>state-of-the-art</i>,<i>domain-specific</i> methods, our <i>domain-agnostic</i> approach infers programs that are significantly more concise, interpretable and editable.
+        </h2>
+      <!-- </div> -->
+      </div>
+      </div>
+      </div>
+</section>
+
+<section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column ">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified is-size-5">
+            <p>
+                Programs offer compactness and structure that makes them an attractive representation for visual data. We explore how <i>code rewriting</i> can be used to improve systems for inferring programs from visual data. We first propose <span class="dnerf"><b>Sparse Intermittent Rewrite Injection</b></span> (<span class="dnerf"><b>SIRI</b></span>), a framework for unsupervised bootstrapped learning. <span class="dnerf">SIRI</span> sparsely applies code rewrite operations over a dataset of training programs, injecting the improved programs back into the training set. 
+                We design a family of rewriters for visual programming domains: <span class="dnerf">Parameter Optimization </span> (PO), <span class="dnerf">Code Pruning (CP)</span>, and <span class="dnerf">Code Grafting</span> (CG). For three shape programming languages in 2D and 3D, we show that using <span class="dnerf">SIRI</span> with our family of rewriters improves performance: better reconstructions and faster convergence rates, compared with bootstrapped learning methods that do not use rewriters or use them naively. Finally, we demonstrate that our family of rewriters can be effectively used at test time to improve the output of <span class="dnerf">SIRI</span> predictions. For 2D and 3D CSG, we outperform or match the reconstruction performance of recent domain-specific neural architectures, while producing more parsimonious programs that use significantly fewer primitives.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+  
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-max-desktop">
+          <h2 class="title is-3">Inferred Visual Programs</h2>
+          <p class="is-bold is-size-5">Click on any image to reveal its 3D model.</p>
+      </div>
+      </div>
+      <div class="columns is-centered is-mobile is-multiline">
+        <div class="column is-one-forth is-narrow">
+          <model-viewer bounds="tight" id="toggle-poster-1" reveal="manual" enable-pan="" 
+            src="./static/data_3d/models/02828884_bench_126.glb" ar="" ar-modes="webxr scene-viewer quick-look" 
+            camera-controls="" poster="./static/data_3d/models/02828884_bench_126.png" shadow-intensity="1" 
+            camera-orbit="135deg 75deg auto" ar-status="not-presenting">
+          </model-viewer>
+          <script>
+            const modelViewer1 = document.querySelector('#toggle-poster-1');
+            modelViewer1.addEventListener('click', () => modelViewer1.dismissPoster());
+          </script>
+          <!-- <div class="content has-text-centered">
+            <p class="is-bold">Bench-126</p>
+            </div> -->
+        </div>
+        <div class="column is-one-forth is-narrow">
+            <model-viewer bounds="tight" id="toggle-poster-2" reveal="manual" enable-pan="" 
+              src="./static/data_3d/models/04379243_table_332.glb" ar="" ar-modes="webxr scene-viewer quick-look" 
+              camera-controls="" poster="./static/data_3d/models/04379243_table_332.png" shadow-intensity="1" 
+              camera-orbit="135deg 75deg auto" ar-status="not-presenting">
+            </model-viewer>
+            <script>
+              const modelViewer2 = document.querySelector('#toggle-poster-2');
+              modelViewer2.addEventListener('click', () => modelViewer2.dismissPoster());
+            </script>
+          <!-- <div class="content has-text-centered">
+            <p class="is-bold">Table-332 </p>
+            </div> -->
+        </div>
+        <div class="column is-one-forth is-narrow">
+            <model-viewer bounds="tight" id="toggle-poster-3" reveal="manual" enable-pan="" 
+              src="./static/data_3d/models/03001627_chair_16.glb" ar="" ar-modes="webxr scene-viewer quick-look" 
+              camera-controls="" poster="./static/data_3d/models/03001627_chair_16.png" shadow-intensity="1" 
+              camera-orbit="135deg 75deg auto" ar-status="not-presenting">
+            </model-viewer>
+            <script>
+              const modelViewer3 = document.querySelector('#toggle-poster-3');
+              modelViewer3.addEventListener('click', () => modelViewer3.dismissPoster());
+            </script>
+          <!-- <div class="content has-text-centered">
+            <p class="is-bold">Chair-16 </p>
+            </div> -->
+        </div>
+        <div class="column is-one-forth is-narrow">
+            <model-viewer bounds="tight" id="toggle-poster-4" reveal="manual" enable-pan="" 
+              src="./static/data_3d/models/04256520_couch_142.glb" ar="" ar-modes="webxr scene-viewer quick-look" 
+              camera-controls="" poster="./static/data_3d/models/04256520_couch_142.png" shadow-intensity="1" 
+              camera-orbit="135deg 75deg auto" ar-status="not-presenting">
+            </model-viewer>
+            <script>
+              const modelViewer4 = document.querySelector('#toggle-poster-4');
+              modelViewer4.addEventListener('click', () => modelViewer4.dismissPoster());
+            </script>
+          <!-- <div class="content has-text-centered">
+            <p class="is-bold">Couch-142 </p>
+            </div> -->
+        </div>
+    </div>
+    <div class="columns is-centered is-mobile is-multiline">
+      <div class="column is-one-forth is-narrow">
+        <model-viewer bounds="tight" id="toggle-poster-5" reveal="manual" enable-pan="" 
+          src="./static/data_3d/models/03001627_chair_126.glb" ar="" ar-modes="webxr scene-viewer quick-look" 
+          camera-controls="" poster="./static/data_3d/models/03001627_chair_126.png" shadow-intensity="1" 
+          camera-orbit="135deg 75deg auto" ar-status="not-presenting">
+        </model-viewer>
+        <script>
+          const modelViewer5 = document.querySelector('#toggle-poster-5');
+          modelViewer5.addEventListener('click', () => modelViewer5.dismissPoster());
+        </script>
+        <!-- <div class="content has-text-centered">
+            <p class="is-bold">Chair-126 </p>
+          </div> -->
+      </div>
+      <div class="column is-one-forth is-narrow">
+        <model-viewer bounds="tight" id="toggle-poster-6" reveal="manual" enable-pan="" 
+          src="./static/data_3d/models/04256520_couch_217.glb" ar="" ar-modes="webxr scene-viewer quick-look" 
+          camera-controls="" poster="./static/data_3d/models/04256520_couch_217.png" shadow-intensity="1" 
+          camera-orbit="135deg 75deg auto" ar-status="not-presenting">
+        </model-viewer>
+        <script>
+          const modelViewer6 = document.querySelector('#toggle-poster-6');
+          modelViewer6.addEventListener('click', () => modelViewer6.dismissPoster());
+        </script>
+        <!-- <div class="content has-text-centered">
+            <p class="is-bold">Couch-217 </p>
+          </div> -->
+      </div>
+      <div class="column is-one-forth is-narrow">
+        <model-viewer bounds="tight" id="toggle-poster-7" reveal="manual" enable-pan="" 
+          src="./static/data_3d/models/02828884_bench_62.glb" ar="" ar-modes="webxr scene-viewer quick-look" 
+          camera-controls="" poster="./static/data_3d/models/02828884_bench_62.png" shadow-intensity="1" 
+          camera-orbit="135deg 75deg auto" ar-status="not-presenting">
+        </model-viewer>
+        <script>
+          const modelViewer7 = document.querySelector('#toggle-poster-7');
+          modelViewer7.addEventListener('click', () => modelViewer7.dismissPoster());
+        </script>
+        <!-- <div class="content has-text-centered">
+            <p class="is-bold">Bench-62 </p>
+          </div> -->
+      </div>
+      <div class="column is-one-forth is-narrow">
+        <model-viewer bounds="tight" id="toggle-poster-8" reveal="manual" enable-pan="" 
+          src="./static/data_3d/models/04379243_table_326.glb" ar="" ar-modes="webxr scene-viewer quick-look" 
+          camera-controls="" poster="./static/data_3d/models/04379243_table_326.png" shadow-intensity="1" 
+          camera-orbit="135deg 75deg auto" ar-status="not-presenting">
+        </model-viewer>
+        <script>
+          const modelViewer8 = document.querySelector('#toggle-poster-8');
+          modelViewer8.addEventListener('click', () => modelViewer8.dismissPoster());
+        </script>
+        <!-- <div class="content has-text-centered">
+            <p class="is-bold">Table-326 </p>
+          </div> -->
+      </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Shape Languages. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column ">
+        <h2 class="title is-3">Unsupervised Visual Programs Inference</h2>
+        <div class="content has-text-justified is-size-6">
+          <p>
+            Visual data is often highly structured: manufactured shapes are produced by assembling parts; vector graphics images are built from layers of primitives; detailed textures can be created via intricate compositions of noise functions. <i>Visual programs</i>, i.e. programs that produce visual outputs when executed, are a natural approach to capturing this complexity in a structure-aware fashion. Access to well-written visual programs supports downstream applications across visual computing domains, including editing, generative modeling, and structural analysis.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!--/ Shape Languages. -->
+<!--     
+    <div class="columns is-centered">
+
+      <div class="column is-centered has-text-centered">
+        <div class="content is-size-5">
+          <video id="dollyzoom" autoplay controls muted loop playsinline width="75%">
+            <source src="./static/videos/dollyzoom-stacked.mp4"
+                    type="video/mp4">
+          </video>
+          <p>
+            Shape Languages Example web-p
+          </p>
+        </div>
+      </div>
+    </div>  -->
+
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column ">
+        <div class="content has-text-justified is-size-6">
+          <p>
+            However, crafting these visual programs for a given visual datum can be laborious, even for skilled visual programmers. Therefore, its desirable create systems which perform <i>Visual Program Inference</i> (VPI), i.e. the task of automatically inferring programs that represent the input visual datum. Here, we delve into <i>unsupervised neural VPI</i>, i.e., we are given examples of shapes from a target distribution (such as 3D chairs), without their associated programs and our objective is to train a neural network that aids inferring programs for new shapes from the same target distribution.
+          </p>
+          <p>
+            In this work, we demonstrate that code rewriting techniques can be effectively integrated into neural VPI technqiues, for training the neural network as well as while performing neurally guided inference. By integrating a family of code rewriters into boostrapped learning methods, we achieve <i>state-of-the-art</i> performance on a variety of visual programming domains while also inferring highly parsimonious programs. We propose: 1) <span class="dnerf"><b>Sparse Intermittent Rewrite Injection</b></span> (<span class="dnerf"><b>SIRI</b></span>) a framework for unsupervised visual program inference that leverages a family of code rewriters, and 2) A family of code rewriters applicable to multiple DSLs that benefit VPI learning methods and can be used in a test-time rewriting scheme.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column ">
+        <h2 class="title is-3">Sparse Intermittent Rewrite Injection (SIRI)</h2>
+        <div class="content has-text-justified is-size-6">
+          <p>
+            We propose <span class="dnerf"><b>Sparse Intermittent Rewrite Injection</b></span> (<span class="dnerf"><b>SIRI</b></span>), a framework for unsupervised bootstrapped learning. <span class="dnerf">SIRI</span> sparsely applies code rewrite operations over a dataset of training programs, and injects the improved programs back into the training set in a controlled manner to ensuring diversity of training programs. Please refer to the paper for more details.
+           </p>
+        </div>
+      </div>
+    </div>
+  <div class="columns is-centered">
+    <div class="column">
+      <div class="box m-1 p-1 is-vcentered">
+      <figure class="image">
+      <!-- <iframe src="./static/pdfs/rewriters.pdf" loading="lazy" title="PDF-file" scrolling="no" border="0" width=100% frameborder="no" allowfullscreen framespacing="0"></iframe> -->
+      <img src="./static/images/bootstrapped_learning.png" >
+      </figure> 
+      </div>
+    </div>
+  </div>
+
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column ">
+        <h2 class="title is-3">Code Rewriters</h2>
+        <div class="content has-text-justified is-size-6">
+          <p>
+              We identify three rewrite operators that generalize across multiple shape-program domains, namely <span class="dnerf">Parameter Optimization </span> (PO), <span class="dnerf">Code Pruning (CP)</span>, and <span class="dnerf">Code Grafting</span> (CG). Please refer to the paper for more details.
+           </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="box m-1 p-1 is-vcentered">
+        <figure class="image">
+        <!-- <iframe src="./static/pdfs/rewriters.pdf" loading="lazy" title="PDF-file" scrolling="no" border="0" width=100% frameborder="no" allowfullscreen framespacing="0"></iframe> -->
+        <img src="./static/images/rewriters.png" >
+        </figure> 
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered interpolation-panel">
+      <div class="column interpolation-video-column">
+        <h2 class="title is-4"><span class="dnerf"> Parameter Optimization (PO) </span></h2>
+        <center>
+        <div id="interpolation-image-wrapper">
+            <figure class="image">
+            <img src="./static/images/interpolation/04379243_table_554/00000.jpg">
+            </figure> 
+        </div>
+      </center>
+      </div>
+      </div>
+      <div class="columns is-centered interpolation-panel">
+        <div class="column is-half interpolation-video-column">
+        <input class="slider is-fullwidth is-large is-info"
+               id="interpolation-slider"
+               step="1" min="0" max="100" value="0" type="range">
+          </div>
+      </div>
+      <div class="columns is-centered  interpolation-panel">
+        <div class="column interpolation-video-column">
+        <div class="content has-text-justified is-size-6">
+          The <span class="dnerf">PO</span> rewriter updates continuous parameters of the program while keeping its discrete structural parameters fixed. Here, we show an example of using <span class="dnerf">PO</span> on a 3D CSG program. Check out the supplementary for more details.
+          </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered interpolation-panel">
+        <div class="column interpolation-video-column">
+            <h2 class="title is-4"><span class="dnerf"> Code Grafting (CG) </span></h2>
+            
+          <center>
+          <div id="interpolation-image-wrapper-2">
+            <figure class="image">
+            <img src="./static/images/interpolation/03001627_chair_787/00000.jpg">
+            </figure> 
+          </div>
+        </center>
+        </div>
+        </div>
+        <div class="columns is-centered interpolation-panel">
+          <div class="column is-half interpolation-video-column">
+          <input class="slider is-fullwidth is-large is-info"
+                 id="interpolation-slider-2"
+                 step="1" min="0" max="100" value="0" type="range">
+            </div>
+        </div>
+        <div class="columns is-centered interpolation-panel">
+          <div class="column interpolation-video-column">
+          <div class="content has-text-justified is-size-6">
+            The <span class="dnerf">CG</span> rewriter replaces sub-expressions of a particular program
+            with a better ones from a cache of previously discovered sub-expressions. To accelerate this search we derive the <i>desired execution</i> of sub-expressions w.r.t. the target shape by performing a masked function inversion. Here, we show the <span class="dnerf">CG</span> rewriter applied to a 3D CSG program.
+            </div>
+        </div>
+      </div>
+
+
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop has-text-centered">
+
+    <h2 class="title is-3">Qualitative Results</h2>
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column ">
+
+      <h2 class="title is-4">Comparison to Domain Specific Approach (CSGStump)</h2>
+      
+      <div class="box box-white m-1 p-1 is-vcentered">
+      <figure class="image">
+      <!-- <iframe src="./static/pdfs/rewriters.pdf" loading="lazy" title="PDF-file" scrolling="no" border="0" width=100% frameborder="no" allowfullscreen framespacing="0"></iframe> -->
+      <img src="./static/images/examples_siri_csgstump.png" >
+      </figure> 
+      </div>
+
+    </div>
+    </div>
+  <div class="columns is-centered has-text-centered">
+    <div class="column ">
+    <h2 class="title is-4">Comparison to Boostrapped Learning Approach (PLAD)</h2>
+    <div class="box box-white m-1 p-1 is-vcentered">
+    <figure class="image">
+    <!-- <iframe src="./static/pdfs/rewriters.pdf" loading="lazy" title="PDF-file" scrolling="no" border="0" width=100% frameborder="no" allowfullscreen framespacing="0"></iframe> -->
+    <img src="./static/images/qualitative_plad.png" >
+    </figure> 
+    </div>
+    
+  </div>
+</div>
+
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!--/ Concurrent Work. -->
+    <div class="columns is-centered">
+      <div class="column ">
+    <h2 class="title is-3">BibTeX</h2>
+    <div class="bibtex">
+    <pre><code>@article{ganeshan2023siri,
+   TBD
+}</code></pre>
+    </div>
+  </div>
+</div>
+<div class="columns is-centered">
+  <div class="column ">
+      <h2 class="title is-3">Acknowledgement</h2>
+      <div class="content has-text-justified is-size-6">
+        <p>
+            We would like to thank the anonymous reviewers for their helpful suggestions. This work was funded in parts by NSF award #1941808 and a Brown University Presidential Fellowship. Daniel Ritchie is an advisor to Geopipe and owns equity in the company. Geopipe is a start-up that is developing 3D technology to build immersive virtual copies of the real world with applications in various fields, including games and architecture.
+        </p>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+  
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        The website design has been adapted from the <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> template.
+    </div>
+</footer>
+
+</body>
+</html>
