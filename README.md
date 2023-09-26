@@ -1,23 +1,8 @@
+## CoReF website
 
-# IMP:
+This website has been adapted from the [Nerfies website](https://nerfies.github.io) code.
 
-edit in `static/js/video_comparison.js` to change the `resizeAndPlay` function - height set by 2.
-
-# Render Tasks:
-
-1. 8 Example rotations CSGStump and PLAD Comparison 360 deg rotation videos.
-2. GLTF files + Blender files for 8 PCSG nodes.
-3. Shape Languages Example webp.
-4. PO and CG sequence with code and target and rendering.
-5. Comparison to CSGStump
-6. Comparison to PLAD - bakeNERF.
-7. Upgrade png quality.
-8. TTR Sequence.
-
-
-
-
-# Nerfies
+## Nerfies
 
 This is the repository that contains source code for the [Nerfies website](https://nerfies.github.io).
 
