@@ -1,0 +1,10 @@
+
+numpy == '1.23.5'
+scipy == '1.10.1'
+sympy == '1.12'
+h5py == '3.8.0'
+wandb == '0.15.7'
+networkx == '3.2'
+opencv == '4.7.0'
+torch == '2.1.0'
+faiss == '1.7.2'
