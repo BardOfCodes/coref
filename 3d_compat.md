@@ -41,23 +41,44 @@ Inference (with rewriting) depends on two pickle files which are generated durin
 python scripts/eval_sequential.py --config-file configs/eval.py --name eval --cfg.siri.rewriters.CGRewriter.cache_config.subexpr_load_path $subexpr_cache_path --cfg.trainer.load_weights $model_path --target 3DCoMPaT
 ```
 
-Note that we run this process sequentially (no batched beam search or multiple processes for PO Rewriter) so that we can measure the inference time of the system. The average per-shape inference time will be printed at the end of the evaluation. This will aid with classifying the approach. This should be around.
-This will save all the expressions in a pickle file `project_dir/logs/eval/expressions_{iter}.pkl`. You can convert it to the json file format required in the submission simply as follows:
+Note that we run this process sequentially (no batched beam search or multiple processes for PO Rewriter) so that we can measure the inference time of the system. The average per-shape inference time will be printed at the end of the evaluation.
+This will save all the expressions in a pickle file `project_dir/logs/eval/final_programs.pkl`. This will contain the expressions containing no parameter primitive expressions such as `NoParamCuboid3D` and `NoParamSphere3D`. You can map them to the challenge language as follows: 
 
 ```python
-import json
+
+import geolipi.symbolic as gls 
 import _pickle as cPickle
+mapper = {
+    gls.NoParamCuboid3D: (gls.Cuboid3D, (0.5, 0.5, 0.5)),
+    gls.NoParamSphere3D: (gls.Sphere3D, (0.5,)),
+}
 
-expr_file = "" # Add the expr.pkl filepath here.
-output_file  = "*.json" # The output file.
-exprs = cPickle.load(open(expr_file, 'rb'))
-expr_strings = [x[1][1] for x in exprs]
+def remap(expr):
+    if isinstance(expr, gls.GLFunction):
+        args = []
+        for arg in expr.args:
+            args.append(remap(arg))
+        expr_cls = expr.__class__
+        if expr_cls in mapper:
+            cur_expr, param = mapper[expr_cls]
+            args.append(param)
+        else:
+            cur_expr = expr.__class__
+        return cur_expr(*args)
+    else:
+        return expr
+  
+    
 
-with open(output_file, "w") as f:
-    json.dump(expr_strings, f)
+expr_file = "final_programs.pkl"
+save_file = "converted.pkl"
 
+expressions = cPickle.load(open(expr_file, "rb"))
+expressions = [remap(x) for x in expressions]
+
+cPickle.dump(expressions, open(save_file, "wb"))
 ```
 
-Finally submit the file to the evaluation server [here](). Remeber to report the measured `per shape inference time`.
+Submit the file to the evaluation server [here](). Remeber to report the measured `per shape inference time` as well.
 
-**Note**: You can run the process on the validation set to generate the programs for the val set, and use the evaluation scripts provided in the [VSIC]() repository to measure the evaluation metrics on the val set.
+**Note**: You can run the process on the validation set to generate the programs for the val set, and use the evaluation scripts provided in the [VSIC](https://github.com/BardOfCodes/vsic) repository to measure the evaluation metrics on the val set.
