@@ -5,7 +5,7 @@ from collections import defaultdict
 
 from coref.utils.evaluator import EvalStatEstimator
 from geolipi.torch_compute.sketcher import Sketcher
-from geolipi.torch_compute.evaluate_expression import expr_to_sdf
+from geolipi.torch_compute.deprecated import expr_to_sdf
 import geolipi.symbolic as gls
 
 import coref.language as language

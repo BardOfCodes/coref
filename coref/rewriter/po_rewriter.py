@@ -4,7 +4,7 @@ from collections import defaultdict
 import time
 from .utils import sample_from_bpds, transform_to_tunable, params_from_variables
 from geolipi.torch_compute.sketcher import Sketcher
-from geolipi.torch_compute.evaluate_expression import expr_to_sdf
+from geolipi.torch_compute.deprecated import expr_to_sdf
 from coref.utils.evaluator import EvalStatEstimator
 import coref.language as language
 import torch.multiprocessing as mp

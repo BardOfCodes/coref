@@ -8,7 +8,7 @@ import _pickle as cPickle
 import time
 import coref.language as language
 from geolipi.torch_compute.sketcher import Sketcher
-from geolipi.torch_compute.compile_expression import create_compiled_expr
+from geolipi.torch_compute.batch_compile import create_compiled_expr
 from coref.language.streaming_data_generator import generate_programs
 
 TRAIN = "TRAIN"

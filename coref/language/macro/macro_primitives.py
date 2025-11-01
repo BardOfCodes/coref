@@ -1,6 +1,6 @@
 import torch as th
 from typing import Union as type_union
-from geolipi.symbolic.base_symbolic import GLFunction
+from geolipi.symbolic.base import GLFunction
 from geolipi.symbolic.combinators import Union, Intersection, Difference
 from geolipi.symbolic.primitives_2d import NoParamRectangle2D, NoParamCircle2D, NoParamTriangle2D, NullExpression2D
 from geolipi.symbolic.transforms_2d import Translate2D, Scale2D, EulerRotate2D

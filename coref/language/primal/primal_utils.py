@@ -3,7 +3,7 @@ import numpy as np
 
 from collections import defaultdict
 
-from geolipi.symbolic.types import COMBINATOR_TYPE, NULL_EXPR_TYPE, PRIM_TYPE, TRANSFORM_TYPE
+from geolipi.symbolic.symbol_types import COMBINATOR_TYPE, NULL_EXPR_TYPE, PRIM_TYPE, TRANSFORM_TYPE
 from geolipi.symbolic.transforms_3d import Translate3D, Scale3D, EulerRotate3D
 from geolipi.symbolic.transforms_2d import Translate2D, Scale2D, EulerRotate2D
 

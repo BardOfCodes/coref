@@ -2,7 +2,7 @@
 import numpy as np
 
 from geolipi.torch_compute.sketcher import Sketcher
-from geolipi.torch_compute.compile_expression import create_compiled_expr
+from geolipi.torch_compute.batch_compile import create_compiled_expr
 import coref.language as language
 from .shapes_data import GTShapesDataset
 from .synthetic_data import TRAIN, VALIDATION, TEST

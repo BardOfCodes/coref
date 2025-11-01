@@ -3,10 +3,10 @@ import sympy as sp
 import numpy as np
 import networkx as nx
 import torch as th
-from geolipi.symbolic.base_symbolic import GLFunction
+from geolipi.symbolic.base import GLFunction
 from .function_inversions import INVERSION_MAP
-from geolipi.torch_compute.evaluate_expression import expr_to_sdf
-from geolipi.symbolic.types import COMBINATOR_TYPE
+from geolipi.torch_compute.deprecated import expr_to_sdf
+from geolipi.symbolic.symbol_types import COMBINATOR_TYPE
 import geolipi.symbolic as gls
 from .function_inversions import shape_scale, shape_translate
 

@@ -4,7 +4,7 @@ import numpy as np
 from typing import Union as type_union
 import torch as th
 
-from geolipi.symbolic.base_symbolic import GLFunction
+from geolipi.symbolic.base import GLFunction
 from geolipi.symbolic.primitives_3d import Primitive3D
 from geolipi.symbolic.primitives_3d import NoParamCuboid3D, NoParamSphere3D, NullExpression3D
 from geolipi.symbolic.primitives_2d import Primitive2D

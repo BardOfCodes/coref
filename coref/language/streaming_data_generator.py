@@ -9,17 +9,17 @@ from geolipi.symbolic.primitives_3d import NoParamCuboid3D, NoParamSphere3D
 from geolipi.symbolic.transforms_2d import Translate2D, Scale2D, EulerRotate2D
 from geolipi.symbolic.transforms_3d import Translate3D, Scale3D, EulerRotate3D
 
-from geolipi.torch_compute.evaluate_expression import expr_to_sdf
+from geolipi.torch_compute.deprecated import expr_to_sdf
 from geolipi.torch_compute.sdf_operators import sdf_union, sdf_intersection, sdf_difference
 from geolipi.torch_compute.sketcher import Sketcher
-from geolipi.symbolic.types import TRANSLATE_TYPE, SCALE_TYPE, PRIM_TYPE, ROTATE_TYPE
+from geolipi.symbolic.symbol_types import TRANSLATE_TYPE, SCALE_TYPE, PRIM_TYPE, ROTATE_TYPE
 from geolipi.symbolic.transforms_2d import (
     ReflectX2D, ReflectY2D, RotationSymmetry2D, TranslationSymmetryX2D, TranslationSymmetryY2D)
 from geolipi.symbolic.transforms_3d import (ReflectX3D, ReflectY3D, ReflectZ3D,
                                             RotationSymmetryX3D, RotationSymmetryY3D, RotationSymmetryZ3D,
                                             TranslationSymmetryX3D, TranslationSymmetryY3D, TranslationSymmetryZ3D)
 
-from geolipi.torch_compute.compile_expression import create_compiled_expr
+from geolipi.torch_compute.batch_compile import create_compiled_expr
 from geolipi.torch_compute.batch_evaluate_sdf import create_evaluation_batches, batch_evaluate
 
 from .primal.primal_primitives import PrimalCuboid3D, PrimalSphere3D

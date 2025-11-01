@@ -1,7 +1,7 @@
 import random
 import numpy as np
 import torch as th
-from geolipi.symbolic.base_symbolic import GLFunction
+from geolipi.symbolic.base import GLFunction
 from geolipi.symbolic.combinators import Union, Intersection, Difference
 from geolipi.symbolic.primitives_2d import NoParamRectangle2D, NoParamCircle2D, NoParamTriangle2D
 from geolipi.symbolic.primitives_3d import NoParamCuboid3D, NoParamSphere3D
@@ -9,10 +9,10 @@ from geolipi.symbolic.primitives_3d import NoParamCuboid3D, NoParamSphere3D
 from geolipi.symbolic.transforms_2d import Translate2D, Scale2D, EulerRotate2D
 from geolipi.symbolic.transforms_3d import Translate3D, Scale3D, EulerRotate3D
 
-from geolipi.torch_compute.evaluate_expression import expr_to_sdf
+from geolipi.torch_compute.deprecated import expr_to_sdf
 from geolipi.torch_compute.sdf_operators import sdf_union, sdf_intersection, sdf_difference
 from geolipi.torch_compute.sketcher import Sketcher
-from geolipi.symbolic.types import TRANSLATE_TYPE, SCALE_TYPE, PRIM_TYPE, ROTATE_TYPE
+from geolipi.symbolic.symbol_types import TRANSLATE_TYPE, SCALE_TYPE, PRIM_TYPE, ROTATE_TYPE
 from geolipi.symbolic.transforms_2d import (
     ReflectX2D, ReflectY2D, RotationSymmetry2D, TranslationSymmetryX2D, TranslationSymmetryY2D)
 from geolipi.symbolic.transforms_3d import (ReflectX3D, ReflectY3D, ReflectZ3D,

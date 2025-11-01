@@ -3,7 +3,7 @@ import numpy as np
 import torch as th
 import cv2
 from geolipi.torch_compute.sketcher import Sketcher
-from geolipi.torch_compute.compile_expression import create_compiled_expr
+from geolipi.torch_compute.batch_compile import create_compiled_expr
 from geolipi.torch_compute.batch_evaluate_sdf import create_evaluation_batches, batch_evaluate
 import coref.language as language
 # from pytorch3d.loss import chamfer_distance

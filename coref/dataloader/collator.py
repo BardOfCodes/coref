@@ -2,8 +2,8 @@ import torch as th
 import numpy as np
 from collections import defaultdict
 from geolipi.torch_compute.sketcher import Sketcher
-from geolipi.torch_compute.evaluate_expression import expr_to_sdf
-from geolipi.torch_compute.compile_expression import create_compiled_expr
+from geolipi.torch_compute.deprecated import expr_to_sdf
+from geolipi.torch_compute.batch_compile import create_compiled_expr
 from geolipi.torch_compute.batch_evaluate_sdf import create_evaluation_batches, batch_evaluate
 # TODO: Move to utils if it will be used for other purposes too.
 import coref.language as language
